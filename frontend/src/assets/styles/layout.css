@@ -1,0 +1,67 @@
+/*___________________________ */
+/* Общие стили*/
+/*___________________________ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #c4cce7;
+    color: #1f2937;
+}
+
+/*___________________________ */
+/* Стили для навигационного меню */
+/*___________________________ */
+
+
+nav{
+      background-color: #80a1e1;
+      padding: 16px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+}
+
+nav a{
+    color: #ffffff;
+    font-size: 18px;
+    text-decoration:none;
+    font-weight: 500;
+}
+
+nav a.router-link-exact-active {
+  text-decoration: underline;
+}
+
+
+/*___________________________ */
+/* Стили для таблицы */
+/*___________________________ */
+
+.loan-list {
+  padding: 24px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  border: 1px solid #1f2937;
+  text-align: center;
+}
+button {
+  padding: 6px 12px;
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #3749c1;
+}

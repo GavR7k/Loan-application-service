@@ -28,7 +28,7 @@ namespace LoanService.Controllers
         {
             // позволяет динамически добавлять условия
 
-            var query = _db.LoanEntities.AsQueryable(); 
+            var query = _db.LoanEntities.AsQueryable();
 
             if (status.HasValue)
                 query = query.Where(l => l.Status == status.Value);
@@ -44,6 +44,8 @@ namespace LoanService.Controllers
 
             if (maxTerm.HasValue)
                 query = query.Where(l => l.TermValue <= maxTerm.Value);
+
+            query = query.OrderByDescending(l => l.Id);
 
             var loans = await query.ToListAsync();
             return Ok(loans);
