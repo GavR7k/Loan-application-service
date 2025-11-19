@@ -1,6 +1,7 @@
 /*___________________________ */
 /* Общие стили*/
 /*___________________________ */
+
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +20,7 @@ body {
 
 
 nav{
-      background-color: #80a1e1;
+      background-color: #3860ae;
       padding: 16px;
       display: flex;
       gap: 16px;
@@ -40,6 +41,20 @@ nav a.router-link-exact-active {
 
 
 /*___________________________ */
+/* Стили для фильтров */
+/*___________________________ */
+
+.filters {
+ padding: 5px 0px 0px 24px;
+}
+
+.filters-item{
+  padding: 7px 0px 0px 0px;
+}
+
+
+
+/*___________________________ */
 /* Стили для таблицы */
 /*___________________________ */
 
@@ -57,8 +72,9 @@ th, td {
 }
 button {
   padding: 6px 12px;
-  background-color: #1e40af;
+  background-color: #3860ae;
   color: white;
+  border-radius: 3px;
   border: none;
   cursor: pointer;
 }
