@@ -18,10 +18,36 @@ namespace LoanService.Controllers
         }
 
         [HttpGet] //GET/api/loans
-        public async Task<ActionResult<List<LoanEntity>>> GetLoans()
+        public async Task<ActionResult<List<LoanEntity>>> GetLoans(
+            [FromQuery] LoanStatus? status,
+            [FromQuery] decimal? minAmount,
+            [FromQuery] decimal? maxAmount,
+            [FromQuery] int? minTerm,
+            [FromQuery] int? maxTerm
+            )
         {
-            var loans = await _db.LoanEntities.ToListAsync();
-            return loans;
+            // позволяет динамически добавлять условия
+
+            var query = _db.LoanEntities.AsQueryable(); 
+
+            if (status.HasValue)
+                query = query.Where(l => l.Status == status.Value);
+
+            if (minAmount.HasValue)
+                query = query.Where(l => l.Amount >= minAmount.Value);
+
+            if (maxAmount.HasValue)
+                query = query.Where(l => l.Amount <= maxAmount.Value);
+
+            if (minTerm.HasValue)
+                query = query.Where(l => l.TermValue >= minTerm.Value);
+
+            if (maxTerm.HasValue)
+                query = query.Where(l => l.TermValue <= maxTerm.Value);
+
+            var loans = await query.ToListAsync();
+            return Ok(loans);
+
         }
 
         [HttpPost] //POST/api/loans
@@ -43,5 +69,23 @@ namespace LoanService.Controllers
 
             return CreatedAtAction(nameof(CreateLoan), new { id = loanEntity.Id }, loanEntity);
         }
+
+
+        [HttpPatch("{id}/change-status")] //PUT /api/loans
+        public async Task<ActionResult<LoanEntity>> ChangeStatus(int id)
+        {
+            var loan = await _db.LoanEntities.FindAsync(id);
+            if (loan == null)
+                return NotFound();
+
+            loan.Status = loan.Status == LoanStatus.Published ? LoanStatus.Unpublished : LoanStatus.Published;
+
+            loan.ModifiedAt = DateTime.UtcNow;
+
+            await _db.SaveChangesAsync();
+            return Ok(loan);
+
+        }
+
     }
 }
