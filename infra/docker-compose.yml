@@ -6,13 +6,23 @@ services:
     container_name: loan_postgres
     restart: always
     environment:
-      POSTGRES_USER: loan_user
-      POSTGRES_PASSWORD: loan_password
-      POSTGRES_DB: loan_db
+       POSTGRES_HOST_AUTH_METHOD: trust
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-
+      - infra_postgres_data:/var/lib/postgresql/data
+  backend:
+    build: 
+     context: ../backend
+     dockerfile: LoanService/Dockerfile
+    container_name: loan_backend
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      # строка подключения через переменные окружения
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=loan_db;Username=postgres;
+    ports:
+      - "5007:80"
 volumes:
-  postgres_data:
+  infra_postgres_data:
