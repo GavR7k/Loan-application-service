@@ -24,5 +24,15 @@ services:
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=loan_db;Username=postgres;
     ports:
       - "5007:80"
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: loan_frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
 volumes:
   infra_postgres_data:

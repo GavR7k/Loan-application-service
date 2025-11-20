@@ -3,34 +3,34 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Настройка CORS
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins("http://localhost:8080")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
 
-// Настройка сервисов
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<LoanDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Настройка порта внутри контейнера
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 builder.WebHost.UseUrls("http://*:80");
 
 var app = builder.Build();
 
-// Включаем Swagger без условий
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Swagger пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// Включаем CORS до маршрутизации
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CORS пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
