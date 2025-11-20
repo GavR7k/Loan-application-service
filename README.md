@@ -3,7 +3,7 @@
 ## Структура проекта
 - **infra/**  
   Содержит `docker-compose.yml` для запуска всех сервисов (PostgreSQL, backend, frontend).
-  Cодержит `docker-compose.hub.yml` для запуска сервисов с DockerHub
+  
 - **frontend/**  
   Содержит `Dockerfile` для сборки фронтенда, `nginx.conf` для настройки Nginx и сам проект на Vue.
 - **backend/**  
