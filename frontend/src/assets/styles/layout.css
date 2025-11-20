@@ -52,8 +52,6 @@ nav a.router-link-exact-active {
   padding: 7px 0px 0px 0px;
 }
 
-
-
 /*___________________________ */
 /* Стили для таблицы */
 /*___________________________ */
@@ -80,4 +78,57 @@ button {
 }
 button:hover {
   background-color: #3749c1;
+}
+
+/*___________________________ */
+/* Стили для создания заявки */
+/*___________________________ */
+
+.create-loan {
+  text-align: center;
+  margin: 15px;
+}
+.loan-form{
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 25px;
+  border: 2px solid #ffffff;
+  background-color: #6b8ed6;
+}
+
+.loan-form label{
+  color: #1f2937;
+  font-size: 18px;
+}
+
+.b-create-loan{
+  margin: 10px 70px 0px 70px ;
+ font-size: 20px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.form-row label {
+  flex: 1;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.form-row input {
+  flex: 2;
+  min-height: 22px;
+  text-align: left;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-left: 10px;
 }

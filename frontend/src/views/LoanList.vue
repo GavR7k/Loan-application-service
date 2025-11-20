@@ -108,6 +108,8 @@ async function toggleStatus(loan: Loan) {
 
   const updatedLoan = await response.json();
   loan.status = updatedLoan.status;
+
+  await fetchLoans();
 }
 
 // Реактивные переменные для фильтрации
