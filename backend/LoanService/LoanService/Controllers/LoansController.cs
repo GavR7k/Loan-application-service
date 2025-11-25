@@ -73,7 +73,7 @@ namespace LoanService.Controllers
         }
 
 
-        [HttpPatch("{id}/change-status")] //PUT /api/loans
+        [HttpPatch("{id}/change-status")] //PATCH /api/loans
         public async Task<ActionResult<LoanEntity>> ChangeStatus(int id)
         {
             var loan = await _db.LoanEntities.FindAsync(id);
